@@ -1,6 +1,6 @@
 console.log("Javascript is running!!");
 //Structure for Book object and function convert them into cards
-const library = [];
+const library = {};
 function Book(title, author, numOfPages, isRead){
     this.title = title;
     this.author = author;
@@ -12,41 +12,63 @@ function Book(title, author, numOfPages, isRead){
     }
 }
 
-library.push(new Book("Harry Potter", "Luise Philip", 456, true));
-library.push(new Book("Hamlate", "James Shakspere", 349, false));
+library["Harry Potter"] = new Book("Harry Potter", "Luise Philip", 456, true);
+library["Hamlate"] = new Book("Hamlate", "James Shakspere", 349, false);
 
 //Generating Cards
 let bookContainer = document.getElementById("booksContainer");
-function generateCards(){
-    library.forEach(book => {
-        // Create card element
-        const card = document.createElement('div');
-        card.classList.add('card');
+function addCardByName(name){
+    const book = library[name];
+    // Create card element
+    const card = document.createElement('div');
+    card.classList.add('card');
 
-        // Create card content
-        const title = document.createElement('h2');
-        title.textContent = book.title;
+    // Create card content
+    const title = document.createElement('h2');
+    title.textContent = book.title;
 
-        const author = document.createElement('p');
-        author.textContent = book.author;
+    const author = document.createElement('p');
+    author.textContent = book.author;
 
-        const numOfPages = document.createElement('p');
-        numOfPages.textContent = book.numOfPages;
+    const numOfPages = document.createElement('p');
+    numOfPages.textContent = book.numOfPages;
 
-        const isRead = document.createElement('p');
-        isRead.textContent = (book.isRead)? "Finished": "Unread";
+    const isRead = document.createElement('p');
+    isRead.textContent = (book.isRead)? "Finished": "Unread";
+    isRead.classList.add("isRead");
 
-        // Append content to card
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(numOfPages);
-        card.appendChild(isRead);
-
-        // Append card to container
-        bookContainer.appendChild(card);
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete");
+    deleteButton.addEventListener("click", ()=>{
+        delete library[deleteButton.parentElement.querySelector('h2').textContent]
+        console.log(library);
+        deleteButton.parentElement.remove();
     });
+
+    const readButton = document.createElement('button');
+    readButton.textContent = (book.isRead)? "Unread": "Mark as read";
+    readButton.classList.add("readButton");
+    readButton.addEventListener("click",()=>{
+        const isReadText = readButton.parentElement.querySelector(".isRead");
+        if(isReadText.textContent === "Finished")isReadText.textContent = "Unread";
+        else isReadText.textContent = "Finished";
+    });
+
+    // Append content to card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(numOfPages);
+    card.appendChild(isRead);
+    card.appendChild(deleteButton);
+    card.appendChild(readButton);
+
+    // Append card to container
+    bookContainer.appendChild(card);
 }
-generateCards();
+for(const key in library){
+    addCardByName(key);
+}
 
 //NEW BOOK
 //show new dialog when new dialog is pressed
@@ -68,19 +90,19 @@ confirmButton.addEventListener("click", (event)=>{
     const numOfPages = formData.get("numOfPages");
     const isRead = formData.get("isRead");
 
-    const confirmation = confirm("Is below Correct:"
+    if(name == ""){
+        alert("Book name cannot be empty!!");
+        return;
+    }
+    const confirmation = confirm("Please review the book details below:"
                                 +`\nBook Name: ${name}`
                                 +`\nAuthor: ${author}`
                                 +`\nNumber of Pages: ${numOfPages}`
                                 +`\nIs Read: ${isRead}`);
-
     if(confirmation){
-        library.push(new Book(name, author, numOfPages, (isRead === "Yes")));
+        library[name] = new Book(name, author, numOfPages, (isRead === "Yes"));
         newBookDialog.close();
+        addCardByName(name);
         form.reset();
-        while (bookContainer.firstChild) {
-            bookContainer.removeChild(bookContainer.firstChild);
-          }
-        generateCards();
     }
 })
