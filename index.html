@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Books Wishlist</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <!-- New Book form in a dialog box -->
+    <dialog id="newBookDialog">
+        <form id="bookForm">
+            <p>
+                <label>
+                    Book Name: <input name="bookName" type="text" required/> <br>
+                    Author: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="author" type="text"/> <br>
+                    Number of Pages: <input name="numOfPages" type="St"/> <br>
+                    Is Read: 
+                    <select name="isRead">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </label>
+            </p>
+            <div class="centeredButtons">
+                <button formmethod="dialog" formnovalidate>Cancle</button>
+                <button id="confirm">Add Book</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Main Body  -->
+    <h1>Books Wishlist</h1>
+
+    <div class="centeredButtons">
+        <button id = "newBookButton">New Book</button>
+    </div>
+    
+    <div id = "booksContainer"></div>
+    <!-- Main Body End -->
+
+    <script src='main.js'></script>
+</body>
+</html>

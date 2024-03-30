@@ -1,0 +1,57 @@
+:root{
+    --primary: #EEF5FF;
+    --item: #97E7E1;
+    --itemHover: #97E7E1;
+    --itemAccent: #6AD4DD;
+    --button: #7AA2E3;
+    --buttonHover: #698dc7;
+}
+
+
+body {
+    font-family: "Trebuchet MS", "serif";
+    background-color: var(--primary);
+}
+
+h1{
+    text-align: center;
+}
+
+.centeredButtons{
+    display: flex;
+    justify-content: center;
+}
+button{
+    display: inline-block;
+    background-color: var(--button);
+    border-radius: 10px;
+    height: 30px;
+}
+button:hover{
+    background-color: var(--buttonHover);
+}
+
+
+.card {
+    display: inline-block;
+    background-color: var(--item);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover{
+    background-color: var(--itemHover);
+}
+
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+    );
+    opacity: 0.75;
+}
