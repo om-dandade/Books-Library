@@ -2,6 +2,10 @@
 
 Book Library is a simple web application built using HTML, CSS, and JavaScript. It allows users to create a virtual library, wishlist books, and track their reading progress.
 
+## Live Preview
+
+You can access the live preview of Book Library [here](https://spectra82.github.io/Books-Library/).
+
 ## Features
 
 - **Add Books:** Users can add new books to their library by providing details such as title, author, and genre.
