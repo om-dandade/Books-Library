@@ -1,22 +1,27 @@
 :root{
-    --primary: #EEF5FF;
-    --item: #97E7E1;
-    --itemHover: #97E7E1;
-    --itemAccent: #6AD4DD;
-    --button: #7AA2E3;
-    --buttonHover: #698dc7;
+    --primary: #FEFDED;
+    --item: #fefdedb0;
+    --itemHover: #FEFDED;
+    --button: #C6EBC5;
+    --buttonHover: #A1C398;
 }
 
 
 body {
     font-family: "Trebuchet MS", "serif";
     background-color: var(--primary);
+    background-image: url("./background_image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat; 
 }
 
 h1{
     text-align: center;
 }
 
+/* ----------CARD----------- */
+/* Buttons */
 .centeredButtons{
     display: flex;
     justify-content: center;
@@ -26,12 +31,18 @@ button{
     background-color: var(--button);
     border-radius: 10px;
     height: 30px;
+    margin: 5px;
 }
 button:hover{
     background-color: var(--buttonHover);
 }
 
-
+/*card*/
+#booksContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+}
 .card {
     display: inline-block;
     background-color: var(--item);
@@ -40,11 +51,23 @@ button:hover{
     margin: 10px;
     width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 .card:hover{
     background-color: var(--itemHover);
 }
+.card p{
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.card h2{
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
 
+
+
+/* INPUT FORM */
 ::backdrop {
     background-image: linear-gradient(
       45deg,
@@ -54,4 +77,16 @@ button:hover{
       green
     );
     opacity: 0.75;
+}
+
+form{
+    width: 200px;
+}
+
+/* Is Read */
+.read{
+    color: rgb(0, 165, 0);
+}
+.notRead{
+    color: rgb(194, 175, 0)
 }

@@ -12,9 +12,7 @@ function Book(title, author, numOfPages, isRead){
     }
 }
 
-library["Harry Potter"] = new Book("Harry Potter", "Luise Philip", 456, true);
-library["Hamlate"] = new Book("Hamlate", "James Shakspere", 349, false);
-
+library["example"] = new Book("Example Book", "Your Book will appear like this", 400, true);
 //Generating Cards
 let bookContainer = document.getElementById("booksContainer");
 function addCardByName(name){
@@ -28,19 +26,21 @@ function addCardByName(name){
     title.textContent = book.title;
 
     const author = document.createElement('p');
-    author.textContent = book.author;
+    author.textContent = "Author: " + book.author;
 
     const numOfPages = document.createElement('p');
-    numOfPages.textContent = book.numOfPages;
+    numOfPages.textContent = "Pages: " + book.numOfPages;
 
     const isRead = document.createElement('p');
-    isRead.textContent = (book.isRead)? "Finished": "Unread";
+    isRead.textContent = (book.isRead)? "Finished": "Not Started";
     isRead.classList.add("isRead");
+    isRead.classList.add((book.isRead)? "read":"notRead");
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
     deleteButton.classList.add("delete");
     deleteButton.addEventListener("click", ()=>{
+        if(!confirm("You sure you want to delete this book?"))return;
         delete library[deleteButton.parentElement.querySelector('h2').textContent]
         console.log(library);
         deleteButton.parentElement.remove();
@@ -51,8 +51,16 @@ function addCardByName(name){
     readButton.classList.add("readButton");
     readButton.addEventListener("click",()=>{
         const isReadText = readButton.parentElement.querySelector(".isRead");
-        if(isReadText.textContent === "Finished")isReadText.textContent = "Unread";
-        else isReadText.textContent = "Finished";
+        if(isReadText.textContent === "Finished"){
+            isReadText.textContent = "Not Started";
+            isReadText.classList.remove("read");
+            isReadText.classList.add("notRead");
+        }
+        else {
+            isReadText.textContent = "Finished";
+            isReadText.classList.remove("notRead");
+            isReadText.classList.add("read");
+        }
     });
 
     // Append content to card
@@ -105,4 +113,15 @@ confirmButton.addEventListener("click", (event)=>{
         addCardByName(name);
         form.reset();
     }
+})
+
+//Pressed Enter event
+const allInputs = document.querySelectorAll("input");
+allInputs.forEach(input =>{
+    input.addEventListener('keypress', (event)=>{
+        if(event.key === "Enter"){
+            event.preventDefault();
+            confirmButton.click();
+        }
+    })
 })
