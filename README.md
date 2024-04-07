@@ -16,13 +16,7 @@ You can access the live preview of Book Library [here](https://spectra82.github.
 
 ## Getting Started
 
-To get started with Book Library, simply download the project files and open `index.html` in your web browser. You can then start adding books to your library and using the features described above.
-
-### Download Instructions
-
-1. Click on the green "Code" button above and select "Download ZIP".
-2. Extract the downloaded ZIP file to your desired location on your computer.
-3. Open the extracted folder and double-click on `index.html` to open it in your web browser.
+To get started with Book Library, simply open the live preview [here](https://spectra82.github.io/Books-Library/) in your web browser. You can then start adding books to your library and using the features described above.
 
 ## Usage
 

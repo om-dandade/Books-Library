@@ -55,11 +55,13 @@ function addCardByName(name){
             isReadText.textContent = "Not Started";
             isReadText.classList.remove("read");
             isReadText.classList.add("notRead");
+            readButton.textContent = "Mark as read";
         }
         else {
             isReadText.textContent = "Finished";
             isReadText.classList.remove("notRead");
             isReadText.classList.add("read");
+            readButton.textContent = "unread";
         }
     });
 
